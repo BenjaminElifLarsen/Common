@@ -9,7 +9,7 @@ public class InvalidResultNoData : Result
         _errors = errors;
     }
 
-    public override ResultTypes ResultType => default;
+    public override ResultTypes ResultType => ResultTypes.Invalid;
 
     public override string[] Errors => _errors;
 }
