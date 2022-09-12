@@ -3,5 +3,5 @@
 namespace Common.CQRS.Commands;
 public interface ICommandHandler<TCommand>
 {
-    public Result<int> Handle(TCommand command);
+    public Result Handle(TCommand command);
 }
