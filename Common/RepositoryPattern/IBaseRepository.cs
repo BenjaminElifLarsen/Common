@@ -1,8 +1,7 @@
-﻿using Common.Aggregate;
-using Common.CQRS.Queries;
+﻿using Common.CQRS.Queries;
 using System.Linq.Expressions;
 
-namespace Common.DataHandling;
+namespace Common.RepositoryPattern;
 public interface IBaseRepository<TEntity> where TEntity : class, IAggregateRoot
 {
     public void Create(TEntity entity);

@@ -1,4 +1,4 @@
-﻿namespace Common.Aggregate;
+﻿namespace Common.RepositoryPattern;
 public interface IAggregateRoot
 {
 }
