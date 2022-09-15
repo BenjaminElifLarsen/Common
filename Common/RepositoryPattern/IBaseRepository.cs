@@ -13,4 +13,5 @@ public interface IBaseRepository<TEntity> where TEntity : class, IAggregateRoot
     public int SaveChanges();
     public Task<bool> IsUniqueAsync(Expression<Func<TEntity, bool>> predicate);
     public Task<TEntity> FindByPredicateForOperationAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes);
+    public Task<IEnumerable<TEntity>> AllByPredicateForOperationAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes);
 }
