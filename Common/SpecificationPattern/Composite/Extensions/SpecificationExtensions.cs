@@ -1,6 +1,6 @@
-﻿using Common.SpecificationPattern.BooleanSpecifications;
+﻿using Common.SpecificationPattern.Composite.BooleanSpecifications;
 
-namespace Common.SpecificationPattern.Extensions;
+namespace Common.SpecificationPattern.Composite.Extensions;
 public static class SpecificationExtensions
 {
     public static ISpecification<T> And<T>(this ISpecification<T> spec1, ISpecification<T> spec2)

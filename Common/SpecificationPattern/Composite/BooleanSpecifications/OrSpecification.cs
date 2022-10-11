@@ -1,4 +1,4 @@
-﻿namespace Common.SpecificationPattern.BooleanSpecifications;
+﻿namespace Common.SpecificationPattern.Composite.BooleanSpecifications;
 internal class OrSpecification<T> : ISpecification<T>
 {
     private readonly ISpecification<T> _spec1;
