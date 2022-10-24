@@ -3,6 +3,11 @@ public class BinaryFlag
 {
     private long _flag;
 
+    private BinaryFlag(long flag)
+    {
+        _flag = flag;       
+    }
+
     public BinaryFlag()
     {
         _flag = 0;
@@ -56,4 +61,7 @@ public class BinaryFlag
         var value = Convert.ChangeType(e, Enum.GetUnderlyingType(e.GetType()));
         return Convert.ToInt64(value);
     }
+
+    public static implicit operator long(BinaryFlag flag) => flag._flag;
+    public static implicit operator BinaryFlag(long flag) => new(flag);
 }
