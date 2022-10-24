@@ -19,18 +19,6 @@ public class BinaryFlag
         return (_flag & flag) != 0;
     }
 
-    public static BinaryFlag operator +(BinaryFlag left, int right)
-    {
-        left.AddFlag(right);
-        return left;
-    }
-
-    public static BinaryFlag operator +(BinaryFlag left, byte right)
-    {
-        left.AddFlag(right);
-        return left;
-    }
-
     public static BinaryFlag operator +(BinaryFlag left, long right)
     {
         left.AddFlag(right);
@@ -44,7 +32,7 @@ public class BinaryFlag
 
     public static bool operator !=(BinaryFlag left, long right)
     {
-        return !left.IsFlagPresent(right);
+        return !(left == right);
     }
 
     public static BinaryFlag operator +(BinaryFlag left, Enum right)
@@ -60,7 +48,7 @@ public class BinaryFlag
 
     public static bool operator !=(BinaryFlag left, Enum right)
     {
-        return !left.IsFlagPresent(EnumToLong(right));
+        return !(left == right);
     }
 
     private static long EnumToLong(Enum e) //When file modifier arrive with C# 11 move this into a healper class
