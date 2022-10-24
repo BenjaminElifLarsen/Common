@@ -1,5 +1,7 @@
-﻿namespace Common.SpecificationPattern;
+﻿using Common.Other;
+
+namespace Common.SpecificationPattern;
 public interface IValidate
 {
-    public int Validate();
+    public BinaryFlag Validate();
 }
