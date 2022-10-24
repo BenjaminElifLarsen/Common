@@ -37,4 +37,13 @@ public class BinaryFlag
         return left;
     }
 
+    public static bool operator ==(BinaryFlag left, long right)
+    {
+        return left.IsFlagPresent(right);
+    }
+
+    public static bool operator !=(BinaryFlag left, long right)
+    {
+        return !left.IsFlagPresent(right);
+    }
 }
