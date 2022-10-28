@@ -7,6 +7,6 @@ public interface ISoftDelete
 
 public interface ISoftDeleteDate
 {
-    DateTime? DeletedFrom { get; }
-    void Delete(DateTime? dateTime);
+    DateOnly? DeletedFrom { get; }
+    void Delete(DateOnly? dateTime);
 }
