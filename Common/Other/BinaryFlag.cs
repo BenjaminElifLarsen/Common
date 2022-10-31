@@ -24,6 +24,12 @@ public class BinaryFlag
         return (_flag & flag) != 0;
     }
 
+    public static BinaryFlag operator +(BinaryFlag left, BinaryFlag right)
+    {
+        left._flag |= right._flag;
+        return left;
+    }
+
     public static BinaryFlag operator +(BinaryFlag left, long right)
     {
         left.AddFlag(right);
@@ -64,4 +70,5 @@ public class BinaryFlag
 
     public static implicit operator long(BinaryFlag flag) => flag._flag;
     public static implicit operator BinaryFlag(long flag) => new(flag);
+    public static implicit operator bool(BinaryFlag flag) => flag._flag == 0;
 }
