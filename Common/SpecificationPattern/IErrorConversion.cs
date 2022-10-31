@@ -1,7 +1,7 @@
 ﻿using Common.Other;
 
 namespace Common.SpecificationPattern;
-public interface IErrorConversion //when proper tested and they work, move them over to the Common project. 
+public interface IErrorConversion
 {
     public abstract static IEnumerable<string> Convert(BinaryFlag binaryFlag);
 }
