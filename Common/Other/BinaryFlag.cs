@@ -24,11 +24,11 @@ public class BinaryFlag
         return (_flag & flag) != 0;
     }
 
-    public static BinaryFlag operator +(BinaryFlag left, BinaryFlag right)
-    {
-        left._flag |= right._flag;
-        return left;
-    }
+    //public static BinaryFlag operator +(BinaryFlag left, BinaryFlag right)
+    //{
+    //    left._flag |= right._flag;
+    //    return left;
+    //}
 
     public static BinaryFlag operator +(BinaryFlag left, long right)
     {
