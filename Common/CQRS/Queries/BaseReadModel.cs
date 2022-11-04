@@ -1,5 +1,5 @@
 ﻿namespace Common.CQRS.Queries;
-public abstract class BaseReadModel
+public abstract record BaseReadModel
 {
 }
 
