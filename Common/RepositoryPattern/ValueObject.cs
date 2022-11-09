@@ -1,6 +1,5 @@
-﻿namespace Common.RepositoryPattern
+﻿namespace Common.RepositoryPattern;
+
+public abstract record ValueObject
 {
-    public abstract record ValueObject
-    {
-    }
 }
