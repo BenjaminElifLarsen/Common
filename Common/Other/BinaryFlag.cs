@@ -48,13 +48,13 @@ public class BinaryFlag
 
     public static BinaryFlag operator +(BinaryFlag left, Enum right)
     {
-        left.AddFlag(Convert.ToInt64(EnumToLong(right)));
+        left.AddFlag(Convert.ToInt64(EnumConversion.EnumToLong(right)));
         return left;
     }
 
     public static bool operator ==(BinaryFlag left, Enum right)
     {
-        return left.IsFlagPresent(EnumToLong(right));
+        return left.IsFlagPresent(EnumConversion.EnumToLong(right));
     }
 
     public static bool operator !=(BinaryFlag left, Enum right)
@@ -62,13 +62,17 @@ public class BinaryFlag
         return !(left == right);
     }
 
-    private static long EnumToLong(Enum e) //When file modifier arrive with C# 11 move this into a healper class
+    public static implicit operator long(BinaryFlag flag) => flag._flag;
+    public static implicit operator BinaryFlag(long flag) => new(flag);
+    public static implicit operator bool(BinaryFlag flag) => flag._flag == 0;
+}
+
+
+file class EnumConversion
+{
+    public static long EnumToLong(Enum e)
     {
         var value = Convert.ChangeType(e, Enum.GetUnderlyingType(e.GetType()));
         return Convert.ToInt64(value);
     }
-
-    public static implicit operator long(BinaryFlag flag) => flag._flag;
-    public static implicit operator BinaryFlag(long flag) => new(flag);
-    public static implicit operator bool(BinaryFlag flag) => flag._flag == 0;
 }
