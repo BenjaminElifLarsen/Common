@@ -11,7 +11,7 @@ public interface IIntegrationEvent<TSourceData>
     public long TimeStampRecorded { get; }
     /// <summary>
     /// Used by event bus. As long time it is 'AwatingPublishing' is should try to publish (maybe have a delay).
-    /// When the event bus has successful published, it should trigger a new transaction in the source service that moves the sate to 'Published'
+    /// When the event bus has successful published, it should trigger a new transaction in the source service that moves the status to 'Published'
     /// </summary>
     public IntegrationStatuses Status { get; }
     /// <summary>
