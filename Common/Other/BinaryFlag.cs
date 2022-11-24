@@ -13,17 +13,18 @@ public class BinaryFlag
         _flag = 0;
     }
 
-    public void AddFlag(long flag)
+    private void AddFlag(long flag)
     {
         if ((_flag & flag) == 0)
             _flag += flag;
     }
 
-    public bool IsFlagPresent(long flag)
+    private bool IsFlagPresent(long flag)
     {
         return (_flag & flag) != 0;
     }
 
+    #region Operators
     //public static BinaryFlag operator +(BinaryFlag left, BinaryFlag right)
     //{
     //    left._flag |= right._flag;
@@ -61,15 +62,18 @@ public class BinaryFlag
     {
         return !(left == right);
     }
+    #endregion
 
+    #region Cast Operators
     public static implicit operator long(BinaryFlag flag) => flag._flag;
     public static implicit operator BinaryFlag(long flag) => new(flag);
     public static implicit operator bool(BinaryFlag flag) => flag._flag == 0;
+    #endregion
 }
 
 
-file class EnumConversion
-{
+file class EnumConversion //File encapsulation is coming with C sharp 11, mainly meant for source files. Ensures a class is only visable inside its file.
+{ //how does file partial work? look into it as some point
     public static long EnumToLong(Enum e)
     {
         var value = Convert.ChangeType(e, Enum.GetUnderlyingType(e.GetType()));
