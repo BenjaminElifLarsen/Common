@@ -4,4 +4,7 @@
 /// </summary>
 public interface ICommand
 {
+    public Guid CommandId { get; }
+    public Guid CorrelationId { get; }
+    public Guid CausationId { get; }
 }

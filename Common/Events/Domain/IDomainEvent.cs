@@ -11,6 +11,8 @@ public interface IDomainEvent
     /// When the event was recorded.
     /// </summary>
     public long TimeStampRecorded { get; }
+    public Guid CorrelationId { get; }
+    public Guid CausationId { get; }
 }
 
 public interface IDomainEvent<TSourceData> : IDomainEvent
