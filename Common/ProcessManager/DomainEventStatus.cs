@@ -9,6 +9,9 @@ public enum DomainEventStatus
     Failed,
 }
 
+/// <summary>
+/// Used by process managers to know which events are requried or not and what the state of them are.
+/// </summary>
 public class EventTrackerCollection //consider better name and move
 {
     protected Dictionary<Type, EventTracker> _evnets;
