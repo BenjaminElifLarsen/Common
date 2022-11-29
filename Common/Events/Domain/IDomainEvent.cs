@@ -14,15 +14,15 @@ public interface IDomainEvent
     public Guid CausationId { get; }
 }
 
-public interface IDomainEvent<TSourceData> : IDomainEvent
+public interface IDomainEvent<TData> : IDomainEvent
 { 
     /// <summary>
     /// The source data, that is the changes/added/deleted/etc. that was done. 
     /// </summary>
-    public TSourceData Data { get; } //if needed to be stored in a context, could store the data in a json string
+    public TData Data { get; } //if needed to be stored in a context, could store the data in a json string
 }
 
-public interface IDomainEventFailed : IDomainEvent
+public interface IDomainEventFail : IDomainEvent
 {
     /// <summary>
     /// Errros messages.
@@ -31,6 +31,11 @@ public interface IDomainEventFailed : IDomainEvent
 }
 
 public interface IDomainEvnetSuccess : IDomainEvent
+{ //just an extension of IDomainEvent to have a 'counter' of the Failed version.
+
+}
+
+public interface IDomainEventSuccess<TData> : IDomainEvent<TData>
 { //just an extension of IDomainEvent to have a 'counter' of the Failed version.
 
 }

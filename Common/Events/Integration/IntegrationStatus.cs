@@ -1,5 +1,5 @@
 ﻿namespace Common.Events.Integration;
-public enum IntegrationStatuses
+public enum IntegrationStatus
 {
     AwatingPublishing = 1,
     Published = 2,

@@ -13,9 +13,9 @@ public interface IIntegrationEvent<TSourceData>
     /// Used by event bus. As long time it is 'AwatingPublishing' is should try to publish (maybe have a delay).
     /// When the event bus has successful published, it should trigger a new transaction in the source service that moves the status to 'Published'
     /// </summary>
-    public IntegrationStatuses Status { get; }
+    public IntegrationStatus Status { get; }
     /// <summary>
-    /// The source data, that is the changes/added/deleted/etc. that was done. 
+    /// The source data, that is the changes/added/deleted/etc. that which was done. 
     /// </summary>
     public TSourceData Data { get; }
 }
