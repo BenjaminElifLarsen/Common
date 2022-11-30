@@ -1,6 +1,4 @@
-﻿using Common.RepositoryPattern;
-
-namespace Common.MementoPattern;
+﻿namespace Common.MementoPattern;
 public interface ICaretaker<TEntity, TMemento> where TEntity : IOriginator<TMemento> where TMemento : IMemento
 { //figure out if this should have specific methods
     //also have a generalised caretaker or one for each aggregate/aggregate-root? 
