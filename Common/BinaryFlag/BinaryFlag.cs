@@ -1,11 +1,11 @@
-﻿namespace Common.Other;
+﻿namespace Common.BinaryFlag;
 public class BinaryFlag
 {
     private long _flag;
 
     private BinaryFlag(long flag)
     {
-        _flag = flag;       
+        _flag = flag;
     }
 
     public BinaryFlag()
