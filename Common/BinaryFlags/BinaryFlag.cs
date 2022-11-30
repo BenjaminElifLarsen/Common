@@ -1,4 +1,4 @@
-﻿namespace Common.BinaryFlag;
+﻿namespace Common.BinaryFlags;
 public class BinaryFlag
 {
     private long _flag;

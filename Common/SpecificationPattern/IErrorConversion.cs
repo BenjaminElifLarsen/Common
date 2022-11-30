@@ -1,4 +1,6 @@
-﻿namespace Common.SpecificationPattern;
+﻿using Common.BinaryFlags;
+
+namespace Common.SpecificationPattern;
 public interface IErrorConversion
 {
     public abstract static IEnumerable<string> Convert(BinaryFlag binaryFlag);
