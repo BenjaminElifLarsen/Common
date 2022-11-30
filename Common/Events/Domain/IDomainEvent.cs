@@ -12,6 +12,10 @@ public interface IDomainEvent
     public long TimeStampRecorded { get; }
     public Guid CorrelationId { get; }
     public Guid CausationId { get; }
+    /// <summary>
+    /// Unique and sequential for a given aggregate root.
+    /// </summary>
+    public int Version { get; }
 }
 
 public interface IDomainEvent<TData> : IDomainEvent
