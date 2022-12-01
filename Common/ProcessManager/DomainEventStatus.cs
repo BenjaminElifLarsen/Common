@@ -23,19 +23,10 @@ public class EventTrackerCollection //consider better name and move
     {
         _evnets = new();
     }
-    
-    //public bool HasEventFinished<TEvent>()
-    //{
-    //    if(!_evnets.TryGetValue(typeof(TEvent), out var evnet))
-    //    {
-    //        throw new Exception("Key not present.");
-    //    }
-    //    return evnet.Status == DomainEventStatus.Finished;
-    //}
 
-    public void AddEvent<TEvent>(bool required) where TEvent : IDomainEvent
+    public void AddEventTracker<TEvent>(bool requiredForCompletion) where TEvent : IDomainEvent
     {
-        _evnets.TryAdd(typeof(TEvent), new(required));
+        _evnets.TryAdd(typeof(TEvent), new(requiredForCompletion));
     }
 
     public void RemoveEvent<TEvent>()
@@ -51,11 +42,6 @@ public class EventTrackerCollection //consider better name and move
         }
         _evnets[typeof(TEvent)].UpdateStatus(status);
     }
-
-    //public IEnumerable<string>? Errors()
-    //{
-    //    return _evnets.Where(x => x.Value is IDomainEventFail).SelectMany(x => (x.Value as IDomainEventFail).Errors);
-    //}
 }
 
 public class EventTracker //consider better name and move
