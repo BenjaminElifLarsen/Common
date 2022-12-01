@@ -1,11 +1,11 @@
 ﻿using Common.ResultPattern;
 
 namespace Common.ProcessManager;
-public class ReturnEvent
+public class ProcesserFinished
 {
     public Result Result { get; }
 
-	public ReturnEvent(Result result)
+	public ProcesserFinished(Result result)
 	{
 		Result = result;
 	}
