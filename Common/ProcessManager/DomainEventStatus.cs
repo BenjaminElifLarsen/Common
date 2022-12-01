@@ -18,20 +18,20 @@ public class EventTrackerCollection //consider better name and move
 
     public bool Failed => _evnets.Any(x => x.Value.Status == DomainEventStatus.Failed);
     public bool AllRequiredSucceded => _evnets.Where(x => x.Value.Required == true).All(x => x.Value.Status == DomainEventStatus.Finished);
-    
+    public bool AllFinishedOrFailed => _evnets.All(x => x.Value.Status == DomainEventStatus.Finished || x.Value.Status == DomainEventStatus.Failed);
     public EventTrackerCollection()
     {
         _evnets = new();
     }
     
-    public bool HasEventFinished<TEvent>()
-    {
-        if(!_evnets.TryGetValue(typeof(TEvent), out var evnet))
-        {
-            throw new Exception("Key not present.");
-        }
-        return evnet.Status == DomainEventStatus.Finished;
-    }
+    //public bool HasEventFinished<TEvent>()
+    //{
+    //    if(!_evnets.TryGetValue(typeof(TEvent), out var evnet))
+    //    {
+    //        throw new Exception("Key not present.");
+    //    }
+    //    return evnet.Status == DomainEventStatus.Finished;
+    //}
 
     public void AddEvent<TEvent>(bool required) where TEvent : IDomainEvent
     {
@@ -52,10 +52,10 @@ public class EventTrackerCollection //consider better name and move
         _evnets[typeof(TEvent)].UpdateStatus(status);
     }
 
-    public IEnumerable<string>? Errors()
-    {
-        return _evnets.Where(x => x.Value is IDomainEventFail).SelectMany(x => (x.Value as IDomainEventFail).Errors);
-    }
+    //public IEnumerable<string>? Errors()
+    //{
+    //    return _evnets.Where(x => x.Value is IDomainEventFail).SelectMany(x => (x.Value as IDomainEventFail).Errors);
+    //}
 }
 
 public class EventTracker //consider better name and move
