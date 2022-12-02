@@ -1,7 +1,7 @@
 ﻿using Common.Events.Domain;
 
 namespace Common.RepositoryPattern;
-public interface IEventUnitOfWork
+public interface IBaseEventUnitOfWork
 {
     public void AddOrphanEvnet(IDomainEvent @event);
     public void ProcessEvents();
