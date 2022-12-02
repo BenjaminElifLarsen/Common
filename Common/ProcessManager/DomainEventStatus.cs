@@ -5,7 +5,7 @@ namespace Common.ProcessManager;
 public enum DomainEventStatus
 {
     Awaiting,
-    Finished,
+    Completed,
     Failed,
 }
 
@@ -17,8 +17,8 @@ public class EventTrackerCollection //consider better name and move
     protected Dictionary<Type, EventTracker> _evnets;
 
     public bool Failed => _evnets.Any(x => x.Value.Status == DomainEventStatus.Failed);
-    public bool AllRequiredSucceded => _evnets.Where(x => x.Value.Required == true).All(x => x.Value.Status == DomainEventStatus.Finished);
-    public bool AllFinishedOrFailed => _evnets.All(x => x.Value.Status == DomainEventStatus.Finished || x.Value.Status == DomainEventStatus.Failed);
+    public bool AllRequiredSucceded => _evnets.Where(x => x.Value.Required == true).All(x => x.Value.Status == DomainEventStatus.Completed);
+    public bool AllFinishedOrFailed => _evnets.All(x => x.Value.Status == DomainEventStatus.Completed || x.Value.Status == DomainEventStatus.Failed);
     public EventTrackerCollection()
     {
         _evnets = new();

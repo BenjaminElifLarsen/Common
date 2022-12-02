@@ -8,7 +8,6 @@ public interface IProcessManager
     public bool Running { get; }
     public bool FinishedSuccessful { get; }
     public void SetUp(Guid correlationId);
-    //public void SetCallback(Action<Result> callback);
     public void RegistrateHandler(Action<ProcesserFinished> handler);
     public void PublishEventIfPossible();
 }
