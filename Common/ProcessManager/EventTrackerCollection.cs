@@ -6,19 +6,29 @@ namespace Common.ProcessManager;
 /// </summary>
 public sealed class EventTrackerCollection //consider better name and move
 {
-    protected Dictionary<Type, EventTracker> _evnets;
+    protected Dictionary<Type, IEnumerable<EventTracker>> _evnets;
 
-    public bool Failed => _evnets.Any(x => x.Value.Status == DomainEventStatus.Failed);
-    public bool AllRequiredSucceded => _evnets.Where(x => x.Value.Required == true).All(x => x.Value.Status == DomainEventStatus.Completed);
-    public bool AllFinishedOrFailed => _evnets.All(x => x.Value.Status == DomainEventStatus.Completed || x.Value.Status == DomainEventStatus.Failed);
+    public bool Failed => _evnets.SelectMany(x => x.Value).Any(x => x.Status == DomainEventStatus.Failed);
+    public bool AllRequiredSucceded => _evnets.SelectMany(x => x.Value).Where(x => x.Required == true).All(x => x.Status == DomainEventStatus.Completed);
+    public bool AllFinishedOrFailed => _evnets.SelectMany(x => x.Value).All(x => x.Status == DomainEventStatus.Completed || x.Status == DomainEventStatus.Failed);
+    
     public EventTrackerCollection()
     {
         _evnets = new();
     }
 
-    public void AddEventTracker<TEvent>(bool requiredForCompletion) where TEvent : IDomainEvent
+    public void AddEventTracker<TEvent>(bool requiredForCompletion, int amountToTrack = 1) where TEvent : IDomainEvent
     {
-        _evnets.TryAdd(typeof(TEvent), new(requiredForCompletion));
+        if (!_evnets.TryGetValue(typeof(TEvent), out _)) 
+        {
+            var collection = new EventTracker[amountToTrack];
+            for(int i = 0; i < amountToTrack; i++)
+            {
+                collection[i] = new(requiredForCompletion);
+            }
+            _evnets[typeof(TEvent)] = collection;
+        }
+        //_evnets.TryAdd(typeof(TEvent), new(requiredForCompletion));
     }
 
     public void RemoveEvent<TEvent>()
@@ -30,8 +40,12 @@ public sealed class EventTrackerCollection //consider better name and move
     {
         if (!_evnets.ContainsKey(typeof(TEvent)))
         {
-            throw new Exception("Incorrect key.");
+            //throw new Exception("Incorrect key.");
         }
-        _evnets[typeof(TEvent)].UpdateStatus(status);
+        var e = _evnets[typeof(TEvent)].First(x => x.Status == DomainEventStatus.Awaiting);
+        if(e is not null)
+        {
+            e.UpdateStatus(status);
+        }
     }
 }
