@@ -65,7 +65,7 @@ public class BinaryFlag
     #endregion
 
     #region Cast Operators
-    public static implicit operator long(BinaryFlag flag) => flag._flag;
+    public static implicit operator long(BinaryFlag flag) => flag is not null ? flag._flag : 0;
     public static implicit operator BinaryFlag(long flag) => new(flag);
     public static implicit operator bool(BinaryFlag flag) => flag is not null && flag._flag == 0;
     #endregion
