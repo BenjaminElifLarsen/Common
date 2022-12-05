@@ -4,5 +4,6 @@ public enum DomainEventStatus
 {
     Awaiting,
     Completed,
+    InProgress,
     Failed,
 }
