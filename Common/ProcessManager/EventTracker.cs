@@ -16,7 +16,3 @@ public sealed class EventTracker //consider better name
         Status = status;
     }
 }
-/*
- * maybe have a single event (instead of tracking 15 failers and successes) that states which failed, e.g. which operators was not found and needs to be removed from license type.
- * while also containing the ids of those which no longer are valid.
- */

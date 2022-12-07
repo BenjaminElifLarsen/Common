@@ -33,7 +33,11 @@ public sealed class EventTrackerCollection //consider better name and move
 
     public void RemoveEvent<TEvent>()
     {
-        _evnets.Remove(typeof(TEvent));
+        var e = _evnets[typeof(TEvent)].First(x => x.Status == DomainEventStatus.Awaiting);
+        if (e is not null) 
+        {
+            _evnets.Remove(typeof(TEvent));
+        }
     }
 
     public void UpdateEvent<TEvent>(DomainEventStatus status) where TEvent : IDomainEvent
@@ -43,9 +47,6 @@ public sealed class EventTrackerCollection //consider better name and move
             //throw new Exception("Incorrect key.");
         }
         var e = _evnets[typeof(TEvent)].First(x => x.Status == DomainEventStatus.Awaiting);
-        if(e is not null)
-        {
-            e.UpdateStatus(status);
-        }
+        e?.UpdateStatus(status);
     }
 }
