@@ -27,7 +27,9 @@ public sealed class EventTrackerCollection //consider better name and move
             for(int i = 0; i < amountToTrack; i++)
             {
                 collection[i] = new(requiredForCompletion);
+                #if DEBUG
                 Debug.WriteLine($"Added {typeof(TEvent).Name}");
+                #endif
             }
             _events[typeof(TEvent)] = collection;
         }
@@ -40,7 +42,9 @@ public sealed class EventTrackerCollection //consider better name and move
         if (e is not null) 
         {
             _events.Remove(typeof(TEvent));
+            #if DEBUG
             Debug.WriteLine($"Removed {typeof(TEvent).Name}");
+            #endif
         }
     }
 
@@ -51,7 +55,9 @@ public sealed class EventTrackerCollection //consider better name and move
             //throw new Exception("Incorrect key.");
         }
         var e = _events[typeof(TEvent)].First(x => x.Status == DomainEventStatus.Awaiting);
+        #if DEBUG
         Debug.WriteLine($"Updated {typeof(TEvent).Name}");
+        #endif
         e?.UpdateStatus(status);
     }
 }
