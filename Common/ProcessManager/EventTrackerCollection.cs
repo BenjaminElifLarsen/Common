@@ -1,5 +1,7 @@
 ﻿using Common.Events.Domain;
 using System;
+using System.Diagnostics;
+
 namespace Common.ProcessManager;
 /// <summary>
 /// Used by process managers to know which events are requried or not and what the state of them are.
@@ -25,6 +27,7 @@ public sealed class EventTrackerCollection //consider better name and move
             for(int i = 0; i < amountToTrack; i++)
             {
                 collection[i] = new(requiredForCompletion);
+                Debug.WriteLine($"Added {typeof(TEvent).Name}");
             }
             _events[typeof(TEvent)] = collection;
         }
@@ -37,6 +40,7 @@ public sealed class EventTrackerCollection //consider better name and move
         if (e is not null) 
         {
             _events.Remove(typeof(TEvent));
+            Debug.WriteLine($"Removed {typeof(TEvent).Name}");
         }
     }
 
@@ -47,6 +51,7 @@ public sealed class EventTrackerCollection //consider better name and move
             //throw new Exception("Incorrect key.");
         }
         var e = _events[typeof(TEvent)].First(x => x.Status == DomainEventStatus.Awaiting);
+        Debug.WriteLine($"Updated {typeof(TEvent).Name}");
         e?.UpdateStatus(status);
     }
 }
