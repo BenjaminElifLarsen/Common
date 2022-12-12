@@ -36,9 +36,27 @@ public sealed class EventTrackerCollection //consider better name and move
         //_evnets.TryAdd(typeof(TEvent), new(requiredForCompletion));
     }
 
+    public bool HasEventCompleted<TEvent>()
+    {
+        if (!_events.ContainsKey(typeof(TEvent)))
+        {
+            throw new Exception("Incorrect key");
+        }
+        return _events[typeof(TEvent)].All(x => x.Status == DomainEventStatus.Completed);
+    }
+
+    public bool HasEventFailed<TEvent>()
+    {
+        if (!_events.ContainsKey(typeof(TEvent)))
+        {
+            throw new Exception("Incorrect key");
+        }
+        return _events[typeof(TEvent)].All(x => x.Status == DomainEventStatus.Failed);
+    }
+
     public void RemoveEvent<TEvent>()
     {
-        var e = _events[typeof(TEvent)].First(x => x.Status == DomainEventStatus.Awaiting);
+        var e = _events[typeof(TEvent)].FirstOrDefault(x => x.Status == DomainEventStatus.Awaiting);
         if (e is not null) 
         {
             _events.Remove(typeof(TEvent));
