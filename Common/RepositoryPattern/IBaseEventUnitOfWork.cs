@@ -3,6 +3,6 @@
 namespace Common.RepositoryPattern;
 public interface IBaseEventUnitOfWork
 {
-    public void AddOrphanEvnet(IDomainEvent @event);
+    public void AddOrphanEvent(IDomainEvent @event);
     public void ProcessEvents();
 }
