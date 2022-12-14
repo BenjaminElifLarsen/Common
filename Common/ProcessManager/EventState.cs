@@ -1,6 +1,6 @@
 ﻿namespace Common.ProcessManager;
 
-public sealed class EventState
+internal sealed class EventState
 {
     public bool Required { get; private set; }
     public DomainEventStatus Status { get; private set; }

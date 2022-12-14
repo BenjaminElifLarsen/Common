@@ -5,16 +5,16 @@ namespace Common.ProcessManager;
 /// <summary>
 /// Used by process managers to know which events are requried or not and what the state of them are.
 /// </summary>
-public sealed class EventTrackerCollection //consider better name and move
-{ //come up with a bette state system for process managers
-    protected Dictionary<Type, IEnumerable<EventState>> _events;
+public sealed class EventStateCollection //consider better name and move
+{ //come up with a better state system for process managers
+    private Dictionary<Type, IEnumerable<EventState>> _events;
 
     //need to update these 
     public bool Failed => _events.SelectMany(x => x.Value).Where(x => x.Type == DomainEventType.Succeeder).Any(x => x.Status == DomainEventStatus.Failed);
     public bool AllRequiredSucceded => _events.SelectMany(x => x.Value).Where(x => x.Required == true && x.Type == DomainEventType.Succeeder).Where(x => x.Status != DomainEventStatus.Removed).All(x => x.Status == DomainEventStatus.Completed);
     public bool AllFinishedOrFailed => _events.SelectMany(x => x.Value).All(x => x.Status == DomainEventStatus.Completed || x.Status == DomainEventStatus.Failed || x.Status == DomainEventStatus.Removed);
     
-    public EventTrackerCollection()
+    public EventStateCollection()
     {
         _events = new();
     }
@@ -128,17 +128,4 @@ public sealed class EventTrackerCollection //consider better name and move
             #endif
         }
     }
-
-    //public void UpdateEvent<TEvent>(DomainEventStatus status) where TEvent : IDomainEvent
-    //{
-    //    if (!_events.ContainsKey(typeof(TEvent)))
-    //    {
-    //        //throw new Exception("Incorrect key.");
-    //    }
-    //    var e = _events[typeof(TEvent)].First(x => x.Status == DomainEventStatus.Awaiting);
-    //    #if DEBUG
-    //    Debug.WriteLine($"Updated {typeof(TEvent).Name}");
-    //    #endif
-    //    e?.UpdateStatus(status);
-    //}
 }
