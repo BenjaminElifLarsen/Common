@@ -1,14 +1,16 @@
 ﻿namespace Common.ProcessManager;
 
-public sealed class EventTracker //consider better name
+public sealed class EventState
 {
     public bool Required { get; private set; }
     public DomainEventStatus Status { get; private set; }
+    public DomainEventType Type { get; private set; }
 
-    public EventTracker(bool required)
+    public EventState(bool required, DomainEventType type)
     {
         Required = required;
         Status = DomainEventStatus.Awaiting;
+        Type = type;
     }
 
     public void UpdateStatus(DomainEventStatus status)
