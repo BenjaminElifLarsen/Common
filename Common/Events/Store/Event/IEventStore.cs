@@ -25,7 +25,7 @@ public interface IEventStore
      * the ctors of the aggregate roots should understand how to convert the events to types they can use (the data is stored in json afterall)
      */
     Task<IEnumerable<Event>> LoadStreamAsync(int id, string aggregateType, DateTime endTime);
-    void AddEvents'(IAggregateRoot aggregate);
+    void AddEvents(IAggregateRoot aggregate);
 
     //Task<Event> GetEvent(int sequenceNumber);
 } //consider adding the rolling snapshot with the memento pattern (read up on that)
