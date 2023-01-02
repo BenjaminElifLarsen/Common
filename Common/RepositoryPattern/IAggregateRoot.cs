@@ -6,6 +6,7 @@ namespace Common.RepositoryPattern;
 /// </summary>
 public interface IAggregateRoot
 {
+    public int Id { get; set; }
     /// <summary>
     /// Get all events related to this aggregate.
     /// </summary>

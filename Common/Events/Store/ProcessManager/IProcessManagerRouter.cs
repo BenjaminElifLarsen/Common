@@ -1,4 +1,5 @@
 ﻿namespace Common.Events.Store.ProcessManager;
-public interface IProcessManagerStore
+public interface IProcessManagerRouter
 {
+    // Empty contract
 }

@@ -1,7 +1,11 @@
-﻿namespace Common.Events.Store.Event;
+﻿using Common.Events.Domain;
+using System.Text.Json;
+
+namespace Common.Events.Store.Event;
 public class Event
 {
     public int AggregateId { get; private set; }
+    public string AggregateType { get; private set; }
     /// <summary>
     /// JSON string of the IDomainEvent
     /// </summary>
@@ -15,15 +19,26 @@ public class Event
     /// <summary>
     /// Used by a chasing process to publish events to other streams, permitting the event storage to act as a queue.
     /// </summary>
-    public int SequenceNumber { get; private set; }
+    public long SequenceNumber { get; private set; } //sat by the context, unique and incrementing
 
-    public Event(int aggregateId, string data, int version, string type, long timestamp, int sequenceNumber)
+    //public Event(int aggregateId, string aggregateType, string data, int version, string type, long timestamp, int sequenceNumber)
+    //{
+    //    AggregateId = aggregateId;
+    //    AggregateType = aggregateType;
+    //    Data = data;
+    //    Version = version;
+    //    Type = type;
+    //    Timestamp = timestamp;
+    //    SequenceNumber = sequenceNumber;
+    //}
+
+    public Event(DomainEvent @event)
     {
-        AggregateId = aggregateId;
-        Data = data;
-        Version = version;
-        Type = type;
-        Timestamp = timestamp;
-        SequenceNumber = sequenceNumber;
+        AggregateId = @event.AggregateId;
+        AggregateType = @event.AggregateType;
+        Type = @event.GetType().Name;
+        Timestamp = @event.TimeStampRecorded;
+        Version = @event.Version;
+        Data = JsonSerializer.Serialize(@event);
     }
 }

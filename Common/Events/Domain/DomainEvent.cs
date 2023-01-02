@@ -1,4 +1,5 @@
 ﻿using Common.Events.Base;
+using System.Text.Json;
 
 namespace Common.Events.Domain;
 public abstract class DomainEvent : IBaseEvent

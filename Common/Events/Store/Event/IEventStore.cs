@@ -1,4 +1,4 @@
-﻿using Common.Events.Domain;
+﻿using Common.RepositoryPattern;
 
 namespace Common.Events.Store.Event;
 public interface IEventStore
@@ -10,11 +10,25 @@ public interface IEventStore
     /// <param name="aggregateId"></param>
     /// <param name="aggregateType"></param>
     /// <returns></returns>
-    Task<IEnumerable<Event>> EventsAsync(int aggregateId, string aggregateType);
-    Task<IEnumerable<IDomainEvent>> DoaminEventsAsync(int aggregateId, string aggregateType);
-    Task Add(Aggregate aggregate);
-    Task Add(Event @event);
-    void Save();
-    Task<Event> GetEvent(int sequenceNumber);
+    //Task<IEnumerable<Event>> EventsAsync(int aggregateId, string aggregateType);
+    //Task<IEnumerable<DomainEvent>> DoaminEventsAsync(int aggregateId, string aggregateType);
+    //Task Add(Aggregate aggregate);
+    //Task Add(Event @event);
+    //void Save(); //how to deal with snapshots
+    //how to implement the snap shotter processer. Loads up any aggregate root that require a snapshot, snapshots it, and stores the snapshot 
+    //https://cqrs.wordpress.com/documents/building-event-storage/
+    //maybe snapshot part would be better be implemnted in the concreate without any contract methods
+    Task<IEnumerable<Event>> LoadStreamAsync(int id, string aggregateType); 
+    /*
+     * if using memento pattern, the first data point should be the snapshot, anything after should be the events, but how to best do this?
+     * could convert the snapshot the an event of a special type like 'CreateEvent'.
+     * the ctors of the aggregate roots should understand how to convert the events to types they can use (the data is stored in json afterall)
+     */
+    Task<IEnumerable<Event>> LoadStreamAsync(int id, string aggregateType, DateTime endTime);
+    void AddEvents'(IAggregateRoot aggregate);
+
+    //Task<Event> GetEvent(int sequenceNumber);
 } //consider adding the rolling snapshot with the memento pattern (read up on that)
   //https://cqrs.wordpress.com/documents/building-event-storage/
+
+//https://stackoverflow.com/questions/12362641/relation-between-command-handlers-aggregates-the-repository-and-the-event-stor?rq=1
