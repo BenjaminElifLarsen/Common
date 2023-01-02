@@ -1,6 +1,6 @@
 ﻿using Common.Events.Store.ProcessManager;
 
-namespace Common.RepositoryPattern.ProcessManager;
+namespace Common.RepositoryPattern.ProcessManagers;
 public interface IBaseProcessManagerRepository<TProcessManager> where TProcessManager : BaseProcessManager
 {
     public TProcessManager Load(Guid correlationId);

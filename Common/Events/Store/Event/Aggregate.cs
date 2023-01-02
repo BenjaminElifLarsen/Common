@@ -16,6 +16,11 @@ public class Aggregate
     {
         AggregateId = aggregate.Id;
         Type = aggregate.GetType().Name;
-        Version = 0;
+        Version = -1;
+    }
+
+    public void UpdateVersion(int version)
+    {
+        Version = version;
     }
 }

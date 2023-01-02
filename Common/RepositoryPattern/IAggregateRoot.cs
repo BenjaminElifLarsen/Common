@@ -6,11 +6,11 @@ namespace Common.RepositoryPattern;
 /// </summary>
 public interface IAggregateRoot
 {
-    public int Id { get; set; }
+    public int Id { get; }
     /// <summary>
     /// Get all events related to this aggregate.
     /// </summary>
-    public IEnumerable<IDomainEvent> Events { get; }
+    public IEnumerable<IDomainEvent> OldEventsDesign { get; }
     /// <summary>
     /// Add an event to the aggregate.
     /// </summary>
@@ -22,5 +22,5 @@ public interface IAggregateRoot
     /// <param name="eventItem"></param>
     public void RemoveDomainEvent(IDomainEvent eventItem);
     public void AddDomainEvent(DomainEvent eventItem);
-    public IEnumerable<DomainEvent> GetEvents { get; }
+    public IEnumerable<DomainEvent> Events { get; }
 }
