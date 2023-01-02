@@ -1,4 +1,4 @@
-﻿namespace Common.Events.Store;
+﻿namespace Common.Events.Store.Event.Event;
 public class Aggregate
 {
     public int AggregateId { get; private set; }

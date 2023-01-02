@@ -20,4 +20,6 @@ public interface IAggregateRoot
     /// </summary>
     /// <param name="eventItem"></param>
     public void RemoveDomainEvent(IDomainEvent eventItem);
+    public void AddDomainEvent(DomainEvent eventItem);
+    public IEnumerable<DomainEvent> GetEvents { get; }
 }

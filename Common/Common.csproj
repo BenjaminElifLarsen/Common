@@ -17,5 +17,9 @@
   <PropertyGroup>
     <EnablePreviewFeatures>true</EnablePreviewFeatures>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Events\ProcessManager\" />
+  </ItemGroup>
   
 </Project>

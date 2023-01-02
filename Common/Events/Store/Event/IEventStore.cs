@@ -1,6 +1,6 @@
 ﻿using Common.Events.Domain;
 
-namespace Common.Events.Store;
+namespace Common.Events.Store.Event;
 public interface IEventStore
 { //from reading it seems like repositories should write data to the store.
     //can either have an event store for the entire system or for each application
