@@ -1,7 +1,7 @@
 ﻿using Common.Events.Base;
 
 namespace Common.Events.System;
-public abstract class SystemEvent : IBaseEvent
+public abstract record SystemEvent : IBaseEvent
 {
     public string EventType { get; private set; }
 
@@ -20,15 +20,5 @@ public abstract class SystemEvent : IBaseEvent
         TimeStampRecorded = DateTime.Now.Ticks;
         CorrelationId = correlationId;
         CausationId = causationId;
-    }
-}
-
-public abstract class SystemEvent<TData> : SystemEvent
-{
-    public TData Data { get; private set; }
-
-    public SystemEvent(TData data, Guid correlationId, Guid causationId) : base(correlationId, causationId)
-    {
-        Data = data;
     }
 }

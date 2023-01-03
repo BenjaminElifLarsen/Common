@@ -1,7 +1,7 @@
 ﻿using Common.Events.Base;
 
 namespace Common.Events.Domain;
-public abstract class DomainEvent : IBaseEvent
+public abstract record DomainEvent : IBaseEvent
 {
     public string EventType { get; protected set; }
 
@@ -25,15 +25,3 @@ public abstract class DomainEvent : IBaseEvent
         CausationId = causationId;
     }
 }
-
-//not sure there is a point for this class, concrete implementations of the above abstract could add the data properties as needed
-//the same for error messages, maybe error version actually should be of EventType rather than DomainEvent.
-//public abstract class DomainEvent<TData> : DomainEvent
-//{ //use for data
-//    public TData Data { get; protected set; }
-
-//    public DomainEvent(TData data, Guid correlationId, Guid causationId) : base(correlationId, causationId)
-//    {
-//        Data = data;
-//    }
-//}
