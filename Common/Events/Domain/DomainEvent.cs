@@ -1,27 +1,37 @@
 ﻿using Common.Events.Base;
+using Common.RepositoryPattern;
 
 namespace Common.Events.Domain;
 public abstract record DomainEvent : IBaseEvent
 {
-    public string EventType { get; protected set; }
+    public string EventType { get; private set; }
 
-    public Guid EventId { get; protected set; }
+    public Guid EventId { get; private set; }
 
-    public long TimeStampRecorded { get; protected set; }
+    public long TimeStampRecorded { get; private set; }
 
-    public Guid CorrelationId { get; protected set; }
+    public Guid CorrelationId { get; private set; }
 
-    public Guid CausationId { get; protected set; }
-    public string AggregateType { get; protected set; }
-    public int AggregateId { get; protected set; }
-    public int Version { get; protected set; }
+    public Guid CausationId { get; private set; }
+    public string AggregateType { get; private set; }
+    public int AggregateId { get; private set; }
+    public int Version { get; private set; }
 
-    public DomainEvent(Guid correlationId, Guid causationId)
+    private DomainEvent(int aggregateId, string aggregateType, int version, Guid correlationId, Guid causationId)
     {
         EventType = GetType().Name;
         EventId = Guid.NewGuid();
         TimeStampRecorded = DateTime.Now.Ticks;
         CorrelationId = correlationId;
         CausationId = causationId;
+        AggregateType = aggregateType;
+        AggregateId = aggregateId;
+        Version = version;
+    }
+
+    public DomainEvent(IAggregateRoot aggregate, Guid correlationId, Guid causationId)
+        : this(aggregate.Id, aggregate.GetType().Name, aggregate.Events.Count(), correlationId, causationId)
+    {
+
     }
 }
