@@ -3,5 +3,5 @@
 namespace Common.Events.Bus;
 public interface IAppSystemEventHandler<TEvent> where TEvent : SystemEvent
 {
-    public void Handler(TEvent @event);
+    public void Handle(TEvent @event);
 }
