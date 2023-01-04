@@ -1,7 +1,7 @@
-﻿using Common.Events.System;
+﻿//using Common.Events.System;
 
-namespace Common.Events.Bus;
-public interface IAppSystemEventHandler<TEvent> where TEvent : SystemEvent
-{
-    public void Handle(TEvent @event);
-}
+//namespace Common.Events.Bus;
+//public interface IAppSystemEventHandler<TEvent> where TEvent : SystemEvent
+//{
+//    public void Handle(TEvent @event);
+//}

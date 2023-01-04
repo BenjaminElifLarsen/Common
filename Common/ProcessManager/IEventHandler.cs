@@ -1,7 +1,7 @@
-﻿using Common.Events.Domain;
+﻿using Common.Events.Base;
 
 namespace Common.ProcessManager;
-public interface IProcessManagerEventHandler<TEvent> where TEvent : IDomainEvent
+public interface IProcessManagerEventHandler<TEvent> where TEvent : IBaseEvent
 {
-    void Handler(TEvent @event);
+    void Handle(TEvent @event);
 }

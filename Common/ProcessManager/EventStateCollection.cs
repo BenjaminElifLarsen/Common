@@ -1,4 +1,5 @@
-﻿using Common.Events.Domain;
+﻿using Common.Events.Base;
+using Common.Events.Domain;
 using System.Diagnostics;
 
 namespace Common.ProcessManager;
@@ -43,7 +44,7 @@ public sealed class EventStateCollection //consider better name and move
      *  this also permit preventing people overwitting specific statuses.
      *  so remove updateEventTracker
      */
-    public void AddEventTracker<TEvent>(bool requiredForCompletion, DomainEventType type, int amountToTrack = 1) where TEvent : IDomainEvent
+    public void AddEventTracker<TEvent>(bool requiredForCompletion, DomainEventType type, int amountToTrack = 1) where TEvent : IBaseEvent
     {
         if (!_events.TryGetValue(typeof(TEvent), out _)) 
         {
@@ -71,7 +72,7 @@ public sealed class EventStateCollection //consider better name and move
         }
     }
 
-    public bool? HasEventCompleted<TEvent>()
+    public bool? HasEventCompleted<TEvent>() where TEvent : IBaseEvent
     {
         if (!_events.ContainsKey(typeof(TEvent)))
         {
@@ -80,7 +81,7 @@ public sealed class EventStateCollection //consider better name and move
         return _events[typeof(TEvent)].All(x => x.Status == DomainEventStatus.Completed);
     }
 
-    public bool? HasEventFailed<TEvent>()
+    public bool? HasEventFailed<TEvent>() where TEvent : IBaseEvent
     {
         if (!_events.ContainsKey(typeof(TEvent)))
         {
@@ -89,7 +90,7 @@ public sealed class EventStateCollection //consider better name and move
         return _events[typeof(TEvent)].All(x => x.Status == DomainEventStatus.Failed);
     }
 
-    public void RemoveEvent<TEvent>()
+    public void RemoveEvent<TEvent>() where TEvent : IBaseEvent
     {
         var e = _events[typeof(TEvent)].FirstOrDefault(x => x.Status == DomainEventStatus.Awaiting);
         if (e is not null) 
@@ -105,7 +106,7 @@ public sealed class EventStateCollection //consider better name and move
         }
     }
 
-    public void CompleteEvent<TEvent>()
+    public void CompleteEvent<TEvent>() where TEvent : IBaseEvent
     {
         var e = _events[typeof(TEvent)].FirstOrDefault(x => x.Status == DomainEventStatus.Awaiting);
         if (e is not null)
@@ -117,7 +118,7 @@ public sealed class EventStateCollection //consider better name and move
         }
     }
 
-    public void FailEvent<TEvent>()
+    public void FailEvent<TEvent>() where TEvent : IBaseEvent
     {
         var e = _events[typeof(TEvent)].FirstOrDefault(x => x.Status == DomainEventStatus.Awaiting);
         if (e is not null)
