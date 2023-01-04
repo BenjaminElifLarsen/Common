@@ -7,5 +7,5 @@ namespace Common.CQRS.Commands;
 /// <typeparam name="TCommand">The command.</typeparam>
 public interface ICommandHandler<TCommand> where TCommand : ICommand
 {
-    public Result Handle(TCommand command);
+    public void Handle(TCommand command);
 }
