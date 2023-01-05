@@ -2,7 +2,8 @@
 using Common.RepositoryPattern;
 
 namespace Common.Events.Domain;
-public abstract record DomainEvent : IBaseEvent
+
+public abstract record DomainEvent<T> : IBaseEvent
 {
     public string EventType { get; private set; }
 
@@ -14,10 +15,10 @@ public abstract record DomainEvent : IBaseEvent
 
     public Guid CausationId { get; private set; }
     public string AggregateType { get; private set; }
-    public int AggregateId { get; private set; }
+    public T AggregateId { get; private set; }
     public int Version { get; private set; }
 
-    private DomainEvent(int aggregateId, string aggregateType, int version, Guid correlationId, Guid causationId)
+    private DomainEvent(T aggregateId, string aggregateType, int version, Guid correlationId, Guid causationId)
     {
         EventType = GetType().Name;
         EventId = Guid.NewGuid();
@@ -29,9 +30,17 @@ public abstract record DomainEvent : IBaseEvent
         Version = version;
     }
 
-    public DomainEvent(IAggregateRoot aggregate, Guid correlationId, Guid causationId)
+    public DomainEvent(IAggregateRoot<T> aggregate, Guid correlationId, Guid causationId)
         : this(aggregate.Id, aggregate.GetType().Name, aggregate.Events.Count(), correlationId, causationId)
     {
 
+    }
+}
+
+public abstract record DomainEvent : DomainEvent<Guid>
+{
+    protected DomainEvent(IAggregateRoot aggregate, Guid correlationId, Guid causationId) 
+        : base(aggregate, correlationId, causationId)
+    {
     }
 }

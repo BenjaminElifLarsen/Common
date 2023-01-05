@@ -12,3 +12,13 @@ public record IdReference<T> : ValueObject
 		Id = id;
 	}
 }
+
+/// <summary>
+/// Used to prevent accessing one aggregate root via another aggregate.
+/// </summary>
+public record IdReference : IdReference<Guid>
+{
+    public IdReference(Guid id) : base(id)
+    {
+    }
+}

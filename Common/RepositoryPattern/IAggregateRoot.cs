@@ -4,9 +4,9 @@ namespace Common.RepositoryPattern;
 /// <summary>
 /// Contract for aggregate roots. 
 /// </summary>
-public interface IAggregateRoot
+public interface IAggregateRoot<T>
 {
-    public int Id { get; }
+    public T Id { get; }
     /// <summary>
     /// Get all events related to this aggregate.
     /// </summary>
@@ -16,9 +16,14 @@ public interface IAggregateRoot
     /// </summary>
     /// <param name="eventItem"></param>
     public void AddDomainEvent(DomainEvent eventItem);
-    /// <summary>
-    /// Remove an event from the aggregate. 
-    /// </summary>
-    /// <param name="eventItem"></param>
-    public void RemoveDomainEvent(DomainEvent eventItem);
+    ///// <summary>
+    ///// Remove an event from the aggregate. 
+    ///// </summary>
+    ///// <param name="eventItem"></param>
+    //public void RemoveDomainEvent(DomainEvent eventItem);
+}
+
+public interface IAggregateRoot : IAggregateRoot<Guid>
+{
+
 }

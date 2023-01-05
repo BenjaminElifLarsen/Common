@@ -1,6 +1,9 @@
 ﻿using Common.Events.Base;
 
 namespace Common.Events.System;
+/// <summary>
+/// Any event that is does not creates/modifies/deletes an entity.
+/// </summary>
 public abstract record SystemEvent : IBaseEvent
 {
     public string EventType { get; private set; }
