@@ -11,6 +11,8 @@ public record IdReference<T> : ValueObject
 	{
 		Id = id;
 	}
+
+    public static implicit operator IdReference<T>(T id) => new(id);
 }
 
 /// <summary>
@@ -21,4 +23,6 @@ public record IdReference : IdReference<Guid>
     public IdReference(Guid id) : base(id)
     {
     }
+
+    public static implicit operator IdReference(Guid id) => new(id);
 }
