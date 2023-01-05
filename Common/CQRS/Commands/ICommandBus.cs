@@ -18,7 +18,7 @@ public interface ICommandBus
     /// <typeparam name="T">Implementation of <c>ICommand</c>.</typeparam>
     /// <param name="command">The command.</param>
     /// <returns></returns>
-    public Result Dispatch<T>(T command) where T : ICommand;
+    public void Dispatch<T>(T command) where T : ICommand;
     /// <summary>
     /// Unrigistrates a function of <c>ICommand</c>.
     /// </summary>

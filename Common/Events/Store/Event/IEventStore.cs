@@ -18,13 +18,13 @@ public interface IEventStore
     //how to implement the snap shotter processer. Loads up any aggregate root that require a snapshot, snapshots it, and stores the snapshot 
     //https://cqrs.wordpress.com/documents/building-event-storage/
     //maybe snapshot part would be better be implemnted in the concreate without any contract methods
-    Task<IEnumerable<Event>> LoadStreamAsync(int id, string aggregateType); 
+    Task<IEnumerable<Event>> LoadStreamAsync(Guid id, string aggregateType); 
     /*
      * if using memento pattern, the first data point should be the snapshot, anything after should be the events, but how to best do this?
      * could convert the snapshot the an event of a special type like 'CreateEvent'.
      * the ctors of the aggregate roots should understand how to convert the events to types they can use (the data is stored in json afterall)
      */
-    Task<IEnumerable<Event>> LoadStreamAsync(int id, string aggregateType, DateTime endTime);
+    Task<IEnumerable<Event>> LoadStreamAsync(Guid id, string aggregateType, DateTime endTime);
     void AddEvents(IAggregateRoot aggregate);
 
     //Task<Event> GetEvent(int sequenceNumber);

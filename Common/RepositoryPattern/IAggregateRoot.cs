@@ -16,11 +16,11 @@ public interface IAggregateRoot<T>
     /// </summary>
     /// <param name="eventItem"></param>
     public void AddDomainEvent(DomainEvent eventItem);
-    ///// <summary>
-    ///// Remove an event from the aggregate. 
-    ///// </summary>
-    ///// <param name="eventItem"></param>
-    //public void RemoveDomainEvent(DomainEvent eventItem);
+    /// <summary>
+    /// Remove an event from the aggregate. 
+    /// </summary>
+    /// <param name="eventItem"></param>
+    public void RemoveDomainEvent(DomainEvent eventItem);
 }
 
 public interface IAggregateRoot : IAggregateRoot<Guid>
