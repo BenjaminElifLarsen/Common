@@ -1,9 +1,9 @@
 ﻿using Common.RepositoryPattern;
 
 namespace Common.Events.Store.Event;
-public class Aggregate
+public class Aggregate<T>
 {
-    public int AggregateId { get; private set; }
+    public T AggregateId { get; private set; }
     public string Type { get; private set; }
     public int Version { get; private set; }
 
@@ -12,7 +12,7 @@ public class Aggregate
 
     }
 
-    public Aggregate(IAggregateRoot aggregate)
+    public Aggregate(IAggregateRoot<T> aggregate)
     {
         AggregateId = aggregate.Id;
         Type = aggregate.GetType().Name;
@@ -22,5 +22,13 @@ public class Aggregate
     public void UpdateVersion(int version)
     {
         Version = version;
+    }
+}
+
+public class Aggregate : Aggregate<Guid>
+{
+    public Aggregate(IAggregateRoot aggregate) : base(aggregate)
+    {
+
     }
 }

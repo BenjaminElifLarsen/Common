@@ -2,9 +2,9 @@
 using System.Text.Json;
 
 namespace Common.Events.Store.Event;
-public class Event
+public class Event<T>
 {
-    public int AggregateId { get; private set; }
+    public T AggregateId { get; private set; }
     public string AggregateType { get; private set; }
     /// <summary>
     /// JSON string of the IDomainEvent
@@ -32,7 +32,7 @@ public class Event
     //    SequenceNumber = sequenceNumber;
     //}
 
-    public Event(DomainEvent @event)
+    public Event(DomainEvent<T> @event)
     {
         AggregateId = @event.AggregateId;
         AggregateType = @event.AggregateType;
@@ -40,5 +40,12 @@ public class Event
         Timestamp = @event.TimeStampRecorded;
         Version = @event.Version;
         Data = JsonSerializer.Serialize(@event);
+    }
+}
+
+public class Event : Event<Guid>
+{
+    public Event(DomainEvent @event) : base(@event)
+    {
     }
 }

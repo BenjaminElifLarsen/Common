@@ -11,7 +11,7 @@ public interface ICommandBus
     /// </summary>
     /// <typeparam name="T">Implementation of <c>ICommand.</c></typeparam>
     /// <param name="handler">The handler to trigger.</param>
-    public void RegisterHandler<T>(Func<T, Result> handler) where T : ICommand;
+    public void RegisterHandler<T>(Action<T> handler) where T : ICommand;
     /// <summary>
     /// Publish a <c>ICommand</c>.
     /// </summary>
@@ -24,5 +24,5 @@ public interface ICommandBus
     /// </summary>
     /// <typeparam name="T">Implementation of <c>ICommand</c>.</typeparam>
     /// <param name="handler">The handler to trigger.</param>
-    public void UnregisterHandler<T>(Func<T, Result> handler) where T : ICommand;
+    public void UnregisterHandler<T>(Action<T> handler) where T : ICommand;
 }
