@@ -19,6 +19,13 @@ public class Aggregate<T>
         Version = -1;
     }
 
+    public Aggregate(T aggregateId, string type)
+    {
+        AggregateId = aggregateId;
+        Type = type;
+        Version = -1;
+    }
+
     public void UpdateVersion(int version)
     {
         Version = version;
@@ -30,5 +37,9 @@ public class Aggregate : Aggregate<Guid>
     public Aggregate(IAggregateRoot aggregate) : base(aggregate)
     {
 
+    }
+
+    public Aggregate(Guid aggregateId, string type) : base(aggregateId, type)
+    {
     }
 }

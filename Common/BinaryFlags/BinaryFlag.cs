@@ -1,4 +1,6 @@
-﻿namespace Common.BinaryFlags;
+﻿using Common.Helpers;
+
+namespace Common.BinaryFlags;
 public class BinaryFlag
 {
     private long _flag;
@@ -69,14 +71,4 @@ public class BinaryFlag
     public static implicit operator BinaryFlag(long flag) => new(flag);
     public static implicit operator bool(BinaryFlag flag) => flag is not null && flag._flag == 0;
     #endregion
-}
-
-
-file class EnumConversion //File encapsulation is coming with C sharp 11, mainly meant for source files. Ensures a class is only visable inside its file.
-{
-    public static long EnumToLong(Enum e)
-    {
-        var value = Convert.ChangeType(e, Enum.GetUnderlyingType(e.GetType()));
-        return Convert.ToInt64(value);
-    }
 }
