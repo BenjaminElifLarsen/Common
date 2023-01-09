@@ -1,10 +1,13 @@
-﻿namespace Common.RepositoryPattern.Events;
-public interface IBaseEventRepository<TEntity> where TEntity : IAggregateRoot
+﻿using Common.Events.Store.Event;
+
+namespace Common.RepositoryPattern.Events;
+public interface IBaseEventRepository<TId>
 {
-    public void AddEvents(IAggregateRoot root);
+    public void AddEvents(IEnumerable<Event> events);
     //public void AddSnapshoot(IMemento memento);
-    public Task<TEntity> GetEntityAsync(int id);
-    public Task<TEntity> GetEntityAsync(int id, DateTime UpTo);
+    public Task<IEnumerable<Event<TId>>> LoadEntityEventsAsync(TId id);
+    public Task<IEnumerable<Event<TId>>> LoadEntityEventsUptoAsync(TId id, DateTime UpTo);
     //replay method?
 
 }
+
