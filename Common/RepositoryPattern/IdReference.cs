@@ -14,8 +14,8 @@ public record IdReference<T> : ValueObject where T : struct
 
     public static implicit operator IdReference<T>(T id) => new(id);
     public static implicit operator T(IdReference<T> idReference) => idReference.Id;
-    public static bool operator ==(IdReference<T> left, Guid right) => left.Equals(right);
-    public static bool operator !=(IdReference<T> left, Guid right) => !left.Equals(right);
+    public static bool operator ==(IdReference<T> left, T right) => left.Equals(right);
+    public static bool operator !=(IdReference<T> left, T right) => !left.Equals(right);
 
     public virtual bool Equals(IdReference<T>? other)
     {
