@@ -2,13 +2,18 @@
 namespace Common.Events.Projection;
 public static class ProjectionExtension
 {
-    public static T Projection<T>(this IEnumerable<DomainEvent> events, IViewQuery<T> query) where T : IProjection
+    public static T ProjectionSingle<T>(this IEnumerable<DomainEvent> events, IViewSingleQuery<T> query) where T : ISingleProjection<T>
     {
-        return query.Projection(events);
+        return query.SingleProjection(events);
     }
 
-    public static T Projection<T, TId>(this IEnumerable<DomainEvent<TId>> events, IViewQuery<T, TId> query) where T : IProjection
+    public static T ProjectionSingle<T, TId>(this IEnumerable<DomainEvent<TId>> events, IViewSingleQuery<T, TId> query) where T : ISingleProjection<T>
     {
-        return query.Projection(events);
+        return query.SingleProjection(events);
+    }
+
+    public static IEnumerable<T> ProjectionMulti<T>(this IEnumerable<DomainEvent> events, IViewMultiQuery<T> query) where T : IMultiProjection<T>
+    {
+        return query.MultiProjection(events);
     }
 }

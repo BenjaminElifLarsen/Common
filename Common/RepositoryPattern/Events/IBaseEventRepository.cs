@@ -8,6 +8,7 @@ public interface IBaseEventRepository<TId>
     public Task<IEnumerable<Event<TId>>> LoadEntityEventsAsync(TId id, string aggregateType);
     public Task<IEnumerable<Event<TId>>> LoadEntityEventsUptoAsync(TId id, string aggregateType, DateTime UpTo);
     //replay method?
-
+    public Task<IEnumerable<Event<TId>>> LoadAllEvents(string aggregateType);
+    //public IEnumerable<IEnumerable<Event<TId>>> SplitEventsByAggregateIds(IEnumerable<Event<TId>> events);
 }
 

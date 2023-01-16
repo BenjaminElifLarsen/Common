@@ -26,6 +26,7 @@ public interface IEventStore<TId>
      */
     Task<IEnumerable<Event<TId>>> LoadStreamAsync(TId id, string aggregateType, DateTime endTime);
     //void AddEvents(IAggregateRoot aggregate);
+    Task<IEnumerable<Event<TId>>> LoadStreamAsync(string aggregateType);
     void AddEvent(Event<TId> @event);
     void AddEvents(IEnumerable<Event<TId>> events);
     //Task<Event> GetEvent(int sequenceNumber);
