@@ -4,7 +4,7 @@ namespace Common.Events.Projection;
 
 public interface ISingleProjection<T>
 {
-    public abstract static T SingleProjection(IEnumerable<DomainEvent> events);
+    public abstract static T? SingleProjection(IEnumerable<DomainEvent> events);
 }
 
 public interface IMultiProjection<T>
