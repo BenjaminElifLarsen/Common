@@ -1,7 +1,5 @@
-﻿using Common.Events.Base;
-
-namespace Common.Events.Domain;
-public interface IDomainEventBus
+﻿namespace Common.Events.Base;
+public interface IEventBus
 {
     public void RegisterHandler<T>(Action<T> handler) where T : IBaseEvent;
     public void Publish<T>(T @event) where T : IBaseEvent;
