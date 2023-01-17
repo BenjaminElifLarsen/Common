@@ -37,7 +37,7 @@ public class Event<T>
         AggregateType = @event.AggregateType;
         Type = @event.GetType().Name;
         Timestamp = @event.TimeStampRecorded;
-        Version = @event.Version;
+        //Version = @event.Version;
         Data = data is not null ? data : new List<DataPoint>();
         //Data = JsonSerializer.Serialize(@event);
         CorrelationId = @event.CorrelationId;
@@ -56,11 +56,16 @@ public class Event<T>
         AggregateType = e.AggregateType;
         Type = e.Type;
         Timestamp = e.Timestamp;
-        Version = e.Version;
+        //Version = e.Version;
         Data = e.Data;
         CorrelationId = e.CorrelationId;
         CausationId = e.CausationId;
         DomainEventId = e.DomainEventId;
+    }
+
+    public void SetVersion(int version)
+    {
+        Version = version;
     }
 }
 
