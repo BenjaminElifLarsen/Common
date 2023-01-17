@@ -4,7 +4,7 @@ using Common.RepositoryPattern;
 
 namespace Common.Events.Domain;
 
-public abstract record DomainEvent<T> : IBaseEvent
+public abstract record DomainEvent<T> : IBaseEvent, IDomainEvent<T>
 {
     public string EventType { get; private set; }
 
@@ -48,6 +48,8 @@ public abstract record DomainEvent<T> : IBaseEvent
         AggregateType = e.AggregateType;
         TimeStampRecorded = e.Timestamp;
     }
+
+    public abstract Event ConvertToEvent();
 }
 
 public abstract record DomainEvent : DomainEvent<Guid>
