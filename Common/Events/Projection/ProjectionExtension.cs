@@ -12,7 +12,7 @@ public static class ProjectionExtension
         return query.SingleProjection(events);
     }
 
-    public static IEnumerable<T> ProjectionMulti<T>(this IEnumerable<DomainEvent> events, IViewMultiQuery<T> query) where T : IMultiProjection<T>
+    public static IEnumerable<T> ProjectionMultiple<T>(this IEnumerable<DomainEvent> events, IViewMultiQuery<T> query) where T : IMultiProjection<T>
     {
         return query.MultiProjection(events);
     }
