@@ -1,5 +1,5 @@
 ﻿namespace Common.ProcessManager;
-public interface IProcessManager
+public interface IProcessManager //old design
 {
     public Guid ProcessManagerId { get; }
     public Guid CorrelationId { get; }

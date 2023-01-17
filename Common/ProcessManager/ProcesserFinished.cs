@@ -2,7 +2,7 @@
 
 namespace Common.ProcessManager;
 public class ProcesserFinished
-{
+{ //old design
     public Result Result { get; }
 	public Guid ProcessManagerId { get; }
 

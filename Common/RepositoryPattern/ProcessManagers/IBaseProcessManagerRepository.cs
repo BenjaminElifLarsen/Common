@@ -1,4 +1,4 @@
-﻿using Common.Events.Store.ProcessManager;
+﻿using Common.ProcessManager;
 
 namespace Common.RepositoryPattern.ProcessManagers;
 public interface IBaseProcessManagerRepository<TProcessManager> where TProcessManager : IBaseProcessManager

@@ -2,7 +2,7 @@
 using Common.Events.Domain;
 using System.Diagnostics;
 
-namespace Common.ProcessManager;
+namespace Common.ProcessManager; //old design
 /// <summary>
 /// Used by process managers to know which events are requried or not and what the state of them are.
 /// </summary>

@@ -1,6 +1,6 @@
 ﻿namespace Common.ProcessManager;
 
-internal enum DomainEventStatus
+internal enum DomainEventStatus  //old design
 {
     Awaiting,
     Completed,

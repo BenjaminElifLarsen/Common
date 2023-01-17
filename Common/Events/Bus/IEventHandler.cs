@@ -1,5 +1,4 @@
 ﻿using Common.Events.Base;
-using Common.Events.Domain;
 
 namespace Common.Events.Bus;
 public interface IEventHandler<TEvent> where TEvent : IBaseEvent

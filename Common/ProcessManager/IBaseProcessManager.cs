@@ -1,11 +1,11 @@
 ﻿using Common.CQRS.Commands;
 using Common.Events.State;
 
-namespace Common.Events.Store.ProcessManager;
+namespace Common.ProcessManager;
 /// <summary>
 /// Contract for a base procress manager.
 /// </summary>
-public interface IBaseProcessManager
+public interface IBaseProcessManager //new design
 {
     public Guid ProcessManagerId { get; }
     public Guid CorrelationId { get; }
