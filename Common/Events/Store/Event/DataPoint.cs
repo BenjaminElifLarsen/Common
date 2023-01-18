@@ -4,7 +4,7 @@ using Common.RepositoryPattern;
 namespace Common.Events.Store.Event;
 public record DataPoint : ValueObject
 {
-    public int UniqueId { get; private set; }
+    public int UniqueId { get; private set; } //consider a more 'saying' name
     public string Value { get; private set; }
 
     public DataPoint(int uniqueId, string value)

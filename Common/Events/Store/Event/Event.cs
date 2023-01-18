@@ -1,15 +1,10 @@
 ﻿using Common.Events.Domain;
-using System.Text.Json;
 
 namespace Common.Events.Store.Event;
 public class Event<T>
 {
     public T AggregateId { get; private set; }
     public string AggregateType { get; private set; }
-    ///// <summary>
-    ///// JSON string of the IDomainEvent
-    ///// </summary>
-    //public string Data { get; private set; }
     public IEnumerable<DataPoint> Data { get; private set; }
     public int Version { get; private set; }
     /// <summary>
@@ -21,7 +16,7 @@ public class Event<T>
     /// Used by a chasing process to publish events to other streams, permitting the event storage to act as a queue.
     /// </summary>
     public long SequenceNumber { get; private set; } //sat by the context, unique and incrementing
-    public EventType EventType { get; private set; }
+    public EventType EventType { get; private set; } //does not serve any real purpose, remove at some point
     public Guid CorrelationId { get; private set; }
     public Guid CausationId { get; private set; }
     public Guid DomainEventId { get; private set; }
