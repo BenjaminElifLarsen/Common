@@ -9,6 +9,11 @@ public class InvalidResultNoData : Result
         _errors = errors;
     }
 
+    public InvalidResultNoData(IEnumerable<string> errors)
+    {
+        _errors = errors.ToArray();
+    }
+
     public override ResultTypes ResultType => ResultTypes.Invalid;
 
     public override string[] Errors => _errors;
