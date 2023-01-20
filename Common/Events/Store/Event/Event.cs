@@ -51,11 +51,12 @@ public class Event<T>
         AggregateType = e.AggregateType;
         Type = e.Type;
         Timestamp = e.Timestamp;
-        //Version = e.Version;
+        Version = e.Version;
         Data = e.Data;
         CorrelationId = e.CorrelationId;
         CausationId = e.CausationId;
         DomainEventId = e.DomainEventId;
+        EventType = e.EventType;
     }
 
     public void SetVersion(int version)
