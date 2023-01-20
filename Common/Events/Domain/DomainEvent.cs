@@ -1,6 +1,6 @@
-﻿using Common.Events.Base;
+﻿using Common.DDD;
+using Common.Events.Base;
 using Common.Events.Store.Event;
-using Common.RepositoryPattern;
 
 namespace Common.Events.Domain;
 

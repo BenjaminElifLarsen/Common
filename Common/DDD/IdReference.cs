@@ -1,4 +1,6 @@
-﻿namespace Common.RepositoryPattern;
+﻿using Common.RepositoryPattern;
+
+namespace Common.DDD;
 /// <summary>
 /// Used to prevent accessing one aggregate root via another aggregate.
 /// </summary>
@@ -7,10 +9,10 @@ public record IdReference<T> : ValueObject where T : struct
 {
     public T Id { get; private set; }
 
-	public IdReference(T id)
-	{
-		Id = id;
-	}
+    public IdReference(T id)
+    {
+        Id = id;
+    }
 
     public static implicit operator IdReference<T>(T id) => new(id);
     public static implicit operator T(IdReference<T> idReference) => idReference.Id;

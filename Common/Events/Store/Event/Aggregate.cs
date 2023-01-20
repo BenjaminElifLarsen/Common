@@ -1,4 +1,4 @@
-﻿using Common.RepositoryPattern;
+﻿using Common.DDD;
 
 namespace Common.Events.Store.Event;
 public class Aggregate<T>

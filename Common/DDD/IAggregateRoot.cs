@@ -1,6 +1,6 @@
-﻿using Common.Events.Domain; 
+﻿using Common.Events.Domain;
 
-namespace Common.RepositoryPattern;
+namespace Common.DDD;
 /// <summary>
 /// Contract for aggregate roots. 
 /// </summary>

@@ -1,9 +1,10 @@
 ﻿using Common.CQRS.Queries;
+using Common.DDD;
 using System.Linq.Expressions;
 
 namespace Common.RepositoryPattern;
 public interface IBaseRepository<TEntity> where TEntity : class, IAggregateRoot
-{ //update to work with generic ids
+{
     public void Create(TEntity entity);
     public void Update(TEntity entity);
     public void Delete(TEntity entity);
