@@ -11,7 +11,7 @@ public class InvalidResult<T> : Result<T>
         _errors = errors;
     }
 
-    public override ResultTypes ResultType => ResultTypes.Invalid;
+    public override ResultType ResultType => ResultType.Invalid;
 
     public override string[] Errors => _errors;
 

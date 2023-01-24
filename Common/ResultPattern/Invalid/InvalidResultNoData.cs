@@ -14,7 +14,7 @@ public class InvalidResultNoData : Result
         _errors = errors.ToArray();
     }
 
-    public override ResultTypes ResultType => ResultTypes.Invalid;
+    public override ResultType ResultType => ResultType.Invalid;
 
     public override string[] Errors => _errors;
 }

@@ -11,7 +11,7 @@ public class UnexpectedResult<T> : Result<T>
         _errors = errors;
     }
 
-    public override ResultTypes ResultType => ResultTypes.Unexpected;
+    public override ResultType ResultType => ResultType.Unexpected;
 
     public override string[] Errors => _errors;
 

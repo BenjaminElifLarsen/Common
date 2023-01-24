@@ -1,6 +1,6 @@
 ﻿namespace Common.ResultPattern.Enums;
 
-public enum ResultTypes
+public enum ResultType
 {
     Success = 1,
     SuccessNotData = 2,

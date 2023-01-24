@@ -11,7 +11,7 @@ public class SuccessResult<T> : Result<T>
         _data = data;
     }
 
-    public override ResultTypes ResultType => ResultTypes.Success;
+    public override ResultType ResultType => ResultType.Success;
 
     public override string[] Errors => default;
 

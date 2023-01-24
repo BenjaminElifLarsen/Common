@@ -11,7 +11,7 @@ public class NotFoundResult<T> : Result<T>
         _errors = errors;
     }
 
-    public override ResultTypes ResultType => ResultTypes.NotFound;
+    public override ResultType ResultType => ResultType.NotFound;
 
     public override string[] Errors => _errors;
 

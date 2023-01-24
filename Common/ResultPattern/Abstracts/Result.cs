@@ -4,7 +4,7 @@ namespace Common.ResultPattern;
 
 public abstract class Result<T>
 {
-    public abstract ResultTypes ResultType { get; }
+    public abstract ResultType ResultType { get; }
     public abstract string[] Errors { get; }
     public abstract T Data { get; }
 }

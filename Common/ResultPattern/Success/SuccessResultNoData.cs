@@ -9,7 +9,7 @@ public class SuccessResultNoData : Result
 
     }
 
-    public override ResultTypes ResultType => ResultTypes.SuccessNotData;
+    public override ResultType ResultType => ResultType.SuccessNotData;
 
     public override string[] Errors => default;
 }
